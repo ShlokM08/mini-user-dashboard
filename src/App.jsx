@@ -13,13 +13,32 @@ function SignIn({ setUser }) {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-10 shadow-lg rounded-xl bg-white">
-      <h2 className="text-2xl font-bold mb-4">Sign In</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input className="p-2 border rounded" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
-        <input className="p-2 border rounded" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">Sign In</button>
-      </form>
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-indigo-100 flex items-center justify-center px-4">
+      <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Sign In</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+            required
+          />
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md shadow-md transition"
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
@@ -40,21 +59,28 @@ function Dashboard({ user }) {
       });
   }, []);
 
-  if (!user) return <p className="text-center mt-10">Please sign in first.</p>;
+  if (!user) return <p className="text-center mt-10 text-lg text-gray-700">Please sign in first.</p>;
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-10">
-      <h2 className="text-2xl font-bold">Welcome, {user.name}!</h2>
-      {weather && (
-        <div className="mt-6 p-4 border rounded bg-blue-50">
-          <h3 className="text-lg font-bold">Weather in {weather.city}</h3>
-          <div className="flex items-center gap-2">
-            <img src={weather.icon} alt="weather icon" />
-            <p>{weather.temp}°C – {weather.condition}</p>
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-indigo-100 flex items-center justify-center px-4">
+      <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md text-center">
+        <h2 className="text-3xl font-bold text-gray-800">Welcome, {user.name}!</h2>
+        {weather && (
+          <div className="mt-6 bg-blue-100 p-4 rounded-lg shadow-inner flex items-center justify-between">
+            <div>
+              <h3 className="text-xl font-semibold text-blue-800">{weather.city}</h3>
+              <p className="text-blue-700">{weather.temp}°C – {weather.condition}</p>
+            </div>
+            <img src={weather.icon} alt="Weather icon" className="w-12 h-12" />
           </div>
-        </div>
-      )}
-      <Link to="/profile" className="mt-4 inline-block text-blue-600">Edit Profile</Link>
+        )}
+        <Link
+          to="/profile"
+          className="mt-6 inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-md transition"
+        >
+          Edit Profile
+        </Link>
+      </div>
     </div>
   );
 }
@@ -71,13 +97,30 @@ function Profile({ user, setUser }) {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-10 shadow-md bg-white rounded-xl">
-      <h2 className="text-2xl font-bold mb-4">Edit Profile</h2>
-      <form onSubmit={handleUpdate} className="flex flex-col gap-3">
-        <input className="p-2 border rounded" value={name} onChange={(e) => setName(e.target.value)} required />
-        <input className="p-2 border rounded" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <button type="submit" className="bg-green-500 text-white p-2 rounded">Update</button>
-      </form>
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-indigo-100 flex items-center justify-center px-4">
+      <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Edit Profile</h2>
+        <form onSubmit={handleUpdate} className="flex flex-col gap-4">
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md shadow-md transition"
+          >
+            Update
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
